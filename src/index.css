@@ -2,7 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: "Inter var";
+    src: url("../fonts/Inter.var.woff2") format("woff2");
+    font-weight: 100 900;
+}
+
 html {
     background-color: #2e2e2e;
     overflow-x: hidden;
+    font-family: "Inter var", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
