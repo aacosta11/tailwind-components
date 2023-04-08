@@ -1,5 +1,6 @@
 import { Fragment, useState, useRef, useEffect } from 'react'
-import LightNavWithBottomBorder from './components/ApplicationUI/ApplicationShells/StackedLayouts/LightNavWithBottomBorder'
+import LightNavWithBottomBorder from './components/LightNavWithBottomBorder'
+import DarkNavWithWhitePageHeader from './components/DarkNavWithWhitePageHeader'
 
 // for the dummy dropdown menu
 const COMPONENT_GROUPS: { [key: string]: string[] } = {
@@ -11,6 +12,7 @@ const COMPONENT_GROUPS: { [key: string]: string[] } = {
 // list of components
 const COMPONENTS: { [key: string]: JSX.Element } = {
   "Light Nav with Bottom Border": <LightNavWithBottomBorder />,
+  "Dark Nav with White Page Header": <DarkNavWithWhitePageHeader />,
 }
 
 function App() {
