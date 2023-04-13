@@ -2,12 +2,14 @@ import { Fragment, useState, useRef, useEffect } from 'react'
 import LightNavWithBottomBorder from './components/LightNavWithBottomBorder'
 import DarkNavWithWhitePageHeader from './components/DarkNavWithWhitePageHeader'
 import DarkNavWithOverlap from './components/DarkNavWithOverlap'
+import TwoRowNavigationWithOverlap from './components/TwoRowNavigationWithOverlap'
 
 // list of components
 const COMPONENTS: { [key: string]: JSX.Element } = {
   "Light Nav with Bottom Border": <LightNavWithBottomBorder />,
   "Dark Nav with White Page Header": <DarkNavWithWhitePageHeader />,
   "Dark Nav with Overlap": <DarkNavWithOverlap />,
+  "Two Row Navigation with Overlap": <TwoRowNavigationWithOverlap />,
 }
 
 // for the dummy dropdown menu
