@@ -3,13 +3,41 @@ import LightNavWithBottomBorder from './components/LightNavWithBottomBorder'
 import DarkNavWithWhitePageHeader from './components/DarkNavWithWhitePageHeader'
 import DarkNavWithOverlap from './components/DarkNavWithOverlap'
 import TwoRowNavigationWithOverlap from './components/TwoRowNavigationWithOverlap'
+import BrandSidebarWithHeader from './components/BrandSidebarWithHeader'
+
+type tComponent = {
+  Group: string,
+  Section: string,
+  Component?: JSX.Element | null,
+}
 
 // list of components
-const COMPONENTS: { [key: string]: JSX.Element } = {
-  "Light Nav with Bottom Border": <LightNavWithBottomBorder />,
-  "Dark Nav with White Page Header": <DarkNavWithWhitePageHeader />,
-  "Dark Nav with Overlap": <DarkNavWithOverlap />,
-  "Two Row Navigation with Overlap": <TwoRowNavigationWithOverlap />,
+const LIST_OF_COMPONENTS: { [key: string]: tComponent } = {
+  "Light Nav with Bottom Border": {
+    Group: "Application UI",
+    Section: "Stacked Layouts",
+    Component: <LightNavWithBottomBorder />
+  },
+  "Dark Nav with White Page Header": {
+    Group: "Application UI",
+    Section: "Stacked Layouts",
+    Component: <DarkNavWithWhitePageHeader />
+  },
+  "Dark Nav with Overlap": {
+    Group: "Application UI",
+    Section: "Stacked Layouts",
+    Component: <DarkNavWithOverlap />
+  },
+  "Two Row Navigation with Overlap": {
+    Group: "Application UI",
+    Section: "Stacked Layouts",
+    Component: <TwoRowNavigationWithOverlap />
+  },
+  "Brand Sidebar with Header": {
+    Group: "Application UI",
+    Section: "Sidebar Layouts",
+    Component: <BrandSidebarWithHeader />
+  },
 }
 
 // for the dummy dropdown menu
@@ -21,14 +49,7 @@ const COMPONENT_GROUPS: { [key: string]: string[] } = {
 
 function App() {
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const [currentComponent, setCurrentComponent] = useState<{ componentGroup: string, componentSection: string, componentName: string | null, component?: JSX.Element | null }>(
-    {
-      componentGroup: "Application UI",
-      componentSection: "Stacked Layouts",
-      componentName: null,
-      component: null,
-    }
-  );
+  const [currentComponent, setCurrentComponent] = useState<tComponent | null>(null);
 
   function changeDropdownStateTo(state: "true" | "false") {
     const dropdown = dropdownRef.current as HTMLDivElement;
@@ -64,7 +85,7 @@ function App() {
         {/* DROPDOWN MENU */}
         <div aria-label="dropdown-menu" ref={dropdownRef} data-open="false" className="relative pb-1 ml-4 -mb-1 group/main">
           <button type="button" title="this dropdown menu doesn't do anything :)" onClick={handleDropdownState} className="flex items-center peer group-data-[open=true]/main:text-gray-300">
-            <h2 className="text-2xl font-semibold pointer-events-none">{currentComponent.componentGroup}</h2>
+            <h2 className="text-2xl font-semibold pointer-events-none">Application UI</h2>
             <svg xmlns="http://www.w3.org/2000/svg" className="ml-2 h-3 w-6 pointer-events-none translate-y-1 group-hover/main:scale-y-[-1] group-hover/main:translate-y-0 group-data-[open=true]/main:scale-y-[-1] group-data-[open=true]/main:translate-y-0" fill="currentColor" viewBox="0 0 24 12" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 0 L12 6 L18 0 Z" />
             </svg>
@@ -94,8 +115,10 @@ function App() {
         <hr className="w-full -translate-x-4 border-white/20" />
         <div className="p-4 font-semibold text-white">
           <h3>
-            <span className="cursor-pointer" onClick={() => setCurrentComponent(cc => ({ ...cc, component: null }))}>{currentComponent.componentSection}</span>
-            {currentComponent.component && ` \\ ${currentComponent.component?.type.name}`}
+            <span className="cursor-pointer" onClick={() => setCurrentComponent(null)}>
+              Home
+            </span>
+            {currentComponent?.Group && (` \\ ${currentComponent?.Group} ${currentComponent?.Section && (` \\ ${currentComponent?.Section} ${currentComponent?.Component && (` \\ ${currentComponent?.Component.type.name}`)}`)}`) }
           </h3>
         </div>
         <hr className="w-full translate-x-4 border-white/20" />
@@ -103,17 +126,18 @@ function App() {
 
       <main className="mt-4 text-white">
         {
-          currentComponent.component ??
+          currentComponent?.Component ??
           <ul className="mx-auto list-disc list-inside max-w-screen-2xl">
-            {Object.keys(COMPONENTS).map((component, index) => (
-              <li key={index} className="cursor-pointer w-fit" onClick={() => setCurrentComponent(cc => ({ ...cc, component: COMPONENTS[component] }))}>{component}</li>
+            {Object.keys(LIST_OF_COMPONENTS).map((component, index) => (
+              <li key={index} className="cursor-pointer w-fit" onClick={() => setCurrentComponent(LIST_OF_COMPONENTS[component])}>
+                {component}
+              </li>
             ))}
           </ul>
         }
       </main>
     </Fragment>
   )
-
 }
 
 export default App
