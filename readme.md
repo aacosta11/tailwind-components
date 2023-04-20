@@ -1,5 +1,10 @@
 # Tailwind Components
 
-a playground for me to develop and test the components i'm building from Tailwind UI. once i've gathered enough components i'll display them in a presentable manner.
+a playground to test and develop the components found on [Tailwind UI](https://tailwindui.com/).
 
-and no, i'm not copying the source code of these components. i'm recreating them from scratch. :)
+## Getting Started
+
+1. Clone the repo
+2. Install dependencies: `npm install`
+3. Run the development server: `npm run dev`
+4. Open [http://localhost:5173](http://localhost:5173) in your browser.
