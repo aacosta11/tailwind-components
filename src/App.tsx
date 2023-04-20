@@ -124,7 +124,7 @@ function App() {
         <hr className="w-full translate-x-4 border-white/20" />
       </div>
 
-      <main className="mt-4 text-white">
+      <main className="pb-32 mt-4 text-white">
         {
           currentComponent?.Component ??
           <ul className="mx-auto list-disc list-inside max-w-screen-2xl">
