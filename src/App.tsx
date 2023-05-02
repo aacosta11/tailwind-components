@@ -5,6 +5,7 @@ import DarkNavWithOverlap from './components/DarkNavWithOverlap'
 import TwoRowNavigationWithOverlap from './components/TwoRowNavigationWithOverlap'
 import BrandSidebarWithHeader from './components/BrandSidebarWithHeader'
 import LightSidebar from './components/LightSidebar'
+import WithMetaAndActions from './components/WithMetaAndActions'
 
 type tComponent = {
   Group: string,
@@ -43,6 +44,11 @@ const LIST_OF_COMPONENTS: { [key: string]: tComponent } = {
     Group: "Application UI",
     Section: "Sidebar Layouts",
     Component: <LightSidebar />
+  },
+  "With Meta and Actions": {
+    Group: "Application UI",
+    Section: "Page Headings",
+    Component: <WithMetaAndActions />
   },
 }
 
