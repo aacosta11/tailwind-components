@@ -1,16 +1,10 @@
-import { Fragment, useState, useRef, useEffect } from 'react'
-import LightNavWithBottomBorder from './components/LightNavWithBottomBorder'
-import DarkNavWithWhitePageHeader from './components/DarkNavWithWhitePageHeader'
-import DarkNavWithOverlap from './components/DarkNavWithOverlap'
-import TwoRowNavigationWithOverlap from './components/TwoRowNavigationWithOverlap'
-import BrandSidebarWithHeader from './components/BrandSidebarWithHeader'
-import LightSidebar from './components/LightSidebar'
-import WithMetaAndActions from './components/WithMetaAndActions'
+import react, { Fragment, useState, useRef, useEffect, Suspense } from 'react'
 
 type tComponent = {
   Group: string,
   Section: string,
-  Component?: JSX.Element | null,
+  Name: string,
+  Component?: any,
 }
 
 // list of components
@@ -18,38 +12,51 @@ const LIST_OF_COMPONENTS: { [key: string]: tComponent } = {
   "Light Nav with Bottom Border": {
     Group: "Application UI",
     Section: "Stacked Layouts",
-    Component: <LightNavWithBottomBorder />
+    Name: "Light Nav with Bottom Border",
+    Component: react.lazy(() => import("./components/LightNavWithBottomBorder"))
   },
   "Dark Nav with White Page Header": {
     Group: "Application UI",
     Section: "Stacked Layouts",
-    Component: <DarkNavWithWhitePageHeader />
+    Name: "Dark Nav with White Page Header",
+    Component: react.lazy(() => import("./components/DarkNavWithWhitePageHeader"))
   },
   "Dark Nav with Overlap": {
     Group: "Application UI",
     Section: "Stacked Layouts",
-    Component: <DarkNavWithOverlap />
+    Name: "Dark Nav with Overlap",
+    Component: react.lazy(() => import("./components/DarkNavWithOverlap"))
   },
   "Two Row Navigation with Overlap": {
     Group: "Application UI",
     Section: "Stacked Layouts",
-    Component: <TwoRowNavigationWithOverlap />
+    Name: "Two Row Navigation with Overlap",
+    Component: react.lazy(() => import("./components/TwoRowNavigationWithOverlap"))
   },
   "Brand Sidebar with Header": {
     Group: "Application UI",
     Section: "Sidebar Layouts",
-    Component: <BrandSidebarWithHeader />
+    Name: "Brand Sidebar with Header",
+    Component: react.lazy(() => import("./components/BrandSidebarWithHeader"))
   },
   "Light Sidebar": {
     Group: "Application UI",
     Section: "Sidebar Layouts",
-    Component: <LightSidebar />
+    Name: "Light Sidebar",
+    Component: react.lazy(() => import("./components/LightSidebar"))
   },
   "With Meta and Actions": {
     Group: "Application UI",
     Section: "Page Headings",
-    Component: <WithMetaAndActions />
+    Name: "With Meta and Actions",
+    Component: react.lazy(() => import("./components/WithMetaAndActions")),
   },
+  "With Banner Image": {
+    Group: "Application UI",
+    Section: "Page Headings",
+    Name: "With Banner Image",
+    Component: react.lazy(() => import("./components/WithBannerImage")),
+  }
 }
 
 // for the dummy dropdown menu
@@ -130,7 +137,7 @@ function App() {
             <span className="cursor-pointer" onClick={() => setCurrentComponent(null)}>
               Home
             </span>
-            {currentComponent?.Group && (` \\ ${currentComponent?.Group} ${currentComponent?.Section && (` \\ ${currentComponent?.Section} ${currentComponent?.Component && (` \\ ${currentComponent?.Component.type.name}`)}`)}`) }
+            {currentComponent?.Group && (` \\ ${currentComponent?.Group} ${currentComponent?.Section && (` \\ ${currentComponent?.Section} ${currentComponent?.Name && (` \\ ${currentComponent.Name}`)}`)}`) }
           </h3>
         </div>
         <hr className="w-full translate-x-4 border-white/20" />
@@ -138,7 +145,11 @@ function App() {
 
       <main className="pb-32 mt-4 text-white">
         {
-          currentComponent?.Component ??
+          currentComponent?.Component ?
+          <Suspense fallback={<div>Loading...</div>}>
+            <currentComponent.Component />
+          </Suspense>
+          :
           <ul className="mx-auto list-disc list-inside max-w-screen-2xl">
             {Object.keys(LIST_OF_COMPONENTS).map((component, index) => (
               <li key={index} className="cursor-pointer w-fit" onClick={() => setCurrentComponent(LIST_OF_COMPONENTS[component])}>
