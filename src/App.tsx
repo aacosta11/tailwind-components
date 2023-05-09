@@ -56,6 +56,12 @@ const LIST_OF_COMPONENTS: { [key: string]: tComponent } = {
     Section: "Page Headings",
     Name: "With Banner Image",
     Component: react.lazy(() => import("./components/WithBannerImage")),
+  },
+  "Card with Avatar and Stats": {
+    Group: "Application UI",
+    Section: "Page Headings",
+    Name: "Card with Avatar and Stats",
+    Component: react.lazy(() => import("./components/CardWithAvatarAndStats")),
   }
 }
 
