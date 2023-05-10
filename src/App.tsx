@@ -62,7 +62,13 @@ const LIST_OF_COMPONENTS: { [key: string]: tComponent } = {
     Section: "Page Headings",
     Name: "Card with Avatar and Stats",
     Component: react.lazy(() => import("./components/CardWithAvatarAndStats")),
-  }
+  },
+  "Left Aligned Description List": {
+    Group: "Application UI",
+    Section: "Description Lists",
+    Name: "Left Aligned Description List",
+    Component: react.lazy(() => import("./components/LeftAlignedDescriptionList")),
+  },
 }
 
 // for the dummy dropdown menu
