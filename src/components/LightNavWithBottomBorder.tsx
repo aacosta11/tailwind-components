@@ -69,7 +69,7 @@ export default function LightNavWithBottomBorder() {
                         </svg>
                     </button>
                     {/* ~~ dropdown panel ~~ */}
-                    <div aria-label="USER MENU DROPDOWN PANEL" ref={profileMenuRef} data-open="false" className="absolute top-[105%] py-1 w-48 right-0 rounded-lg bg-white border border-gray-100 drop-shadow-xl text-sm text-gray-800 overflow-hidden transition-all ease-in-out transform origin-top-right data-[open=false]:opacity-0 data-[open=false]:scale-90 data-[open=false]:pointer-events-none">
+                    <div aria-label="USER MENU DROPDOWN PANEL" ref={profileMenuRef} data-open="false" className="absolute top-[105%] py-1 w-48 right-5 rounded-lg bg-white border border-gray-100 drop-shadow-xl text-sm text-gray-800 overflow-hidden transition-all ease-in-out transform origin-top-right data-[open=false]:opacity-0 data-[open=false]:scale-90 data-[open=false]:pointer-events-none">
                         {["Your Profile", "Settings", "Sign Out"].map((_, i) => (
                             <button key={i} onClick={handlePanelState} className="w-full px-4 py-2 text-left whitespace-nowrap hover:bg-gray-100">
                                 {_}
