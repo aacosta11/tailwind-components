@@ -1,7 +1,6 @@
 import React from 'react'
 import { PaperClipIcon } from '@heroicons/react/20/solid'
 
-
 const ROWS: { key: string, value: string | JSX.Element }[] = [
     { key: 'Full name', value: 'John Doe' },
     { key: 'Application for', value: 'Frontend Developer' },
@@ -11,20 +10,23 @@ const ROWS: { key: string, value: string | JSX.Element }[] = [
     {
         key: 'Attachments', value:
             <ul aria-label="list_of_attachments" className="mt-1 border border-gray-200 divide-y divide-gray-100 rounded-md">
-                {[{ name: 'resume_front_end_developer.pdf', size: '256kb' }, { name: 'coverletter.pdf', size: '128kb' }].map((file, i) => (
-                    <li key={i} className="flex items-center justify-between p-4 gap-x-3">
+                {[
+                    { name: 'resume_front_end_developer.pdf', size: '256kb' }, 
+                    { name: 'coverletter.pdf', size: '128kb' },
+                ].map(({ name, size }, i) => (
+                    <li key={i} className="flex items-center p-4 gap-x-3">
                         <div className="flex items-center flex-1 w-0 gap-x-3">
                             <PaperClipIcon className="w-5 h-5 text-gray-400 shrink-0" />
                             <div className="flex flex-1 min-w-0 gap-x-3">
                                 <span className="font-medium text-gray-800 truncate">
-                                    {file.name}
+                                    {name}
                                 </span>
                                 <span className="text-gray-400">
-                                    {file.size}
+                                    {size}
                                 </span>
                             </div>
                         </div>
-                        <a href="#" className="flex-shrink-0 font-medium text-blue-600 hover:text-blue-500" onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => e.preventDefault()}>
+                        <a href="#" className="font-medium text-blue-600 hover:text-blue-500" onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => e.preventDefault()}>
                             Download
                         </a>
                     </li>
@@ -34,7 +36,6 @@ const ROWS: { key: string, value: string | JSX.Element }[] = [
 ]
 
 export default function LeftAlignedDescriptionList() {
-
     return (
         <div className="py-8 bg-white text-gray-950 sm:px-2">
             <table aria-label="applicant_information" className="w-full max-w-4xl px-4 mx-auto text-sm text-left divide-y divide-gray-100">
